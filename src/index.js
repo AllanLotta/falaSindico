@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,15 +9,19 @@ import {
 } from 'react-native';
 import Header from './components/Header';
 import Menu from './components/Menu';
+import {MenuContext} from './services/MenuContext';
 
 const App = () => {
+  const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
+    MenuContext
+  );
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <Header />
       </SafeAreaView>
-      <Menu />
+      {menu && <Menu />}
     </>
   );
 };

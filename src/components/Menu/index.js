@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FaIcon from 'react-native-vector-icons/FontAwesome';
+import {MenuContext} from '../../services/MenuContext';
 
 import {Container, Header, List, Item, TextItem} from './styles';
 
@@ -16,17 +16,28 @@ const MenuItens = [
 ];
 
 export default function Menu() {
+  const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
+    MenuContext
+  );
+
+  function closeMenu() {
+    setMenu(false);
+  }
+  function setActive(RouterName) {
+    setActiveRouter(RouterName);
+    closeMenu();
+  }
   return (
     <Container>
       <SafeAreaView>
         <Header>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => closeMenu()}>
             <Icon name="ios-menu" size={30} color="white" />
           </TouchableOpacity>
         </Header>
         <List>
           {MenuItens.map(item => (
-            <Item>
+            <Item onPress={() => setActive(item.text)}>
               <Icon name={item.icon} size={28} color="white" />
               <TextItem>{item.text}</TextItem>
             </Item>

@@ -22,6 +22,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
     'react/state-in-constructor': 'off',
+    'react/prop-types': 'off',
     // 'react/static-property-placement': 'off',
     // 'react/no-typos': 'off',
     // 'react/jsx-props-no-spreading': 'off',
