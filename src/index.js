@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -15,14 +7,17 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import Header from './components/Header';
+import Menu from './components/Menu';
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Text>GG</Text>
+        <Header />
       </SafeAreaView>
+      <Menu />
     </>
   );
 };
