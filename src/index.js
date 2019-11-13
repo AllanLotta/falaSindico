@@ -10,6 +10,8 @@ import {
 import Header from './components/Header';
 import Menu from './components/Menu';
 import {MenuContext} from './services/MenuContext';
+import Login from './screens/Login';
+import Main from './screens/Main';
 
 const App = () => {
   const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
@@ -20,8 +22,10 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <Header />
+        <Main />
       </SafeAreaView>
       {menu && <Menu />}
+      {/* <Login /> */}
     </>
   );
 };

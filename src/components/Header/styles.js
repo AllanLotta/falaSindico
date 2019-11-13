@@ -4,12 +4,14 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  background: blue;
+  background: #387ff5;
   padding: 12px;
   align-items: center;
 `;
 export const ScreenName = styled.Text`
   color: #fafafa;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 // export const Logo = styled.Image.attrs({

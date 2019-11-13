@@ -37,7 +37,7 @@ export default function Menu() {
         </Header>
         <List>
           {MenuItens.map(item => (
-            <Item onPress={() => setActive(item.text)}>
+            <Item key={item.text} onPress={() => setActive(item.text)}>
               <Icon name={item.icon} size={28} color="white" />
               <TextItem>{item.text}</TextItem>
             </Item>
