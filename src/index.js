@@ -12,6 +12,8 @@ import Menu from './components/Menu';
 import {MenuContext} from './services/MenuContext';
 import Login from './screens/Login';
 import Main from './screens/Main';
+import News from './screens/News';
+import Logout from './screens/Logout';
 
 const App = () => {
   const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
