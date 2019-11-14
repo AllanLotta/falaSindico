@@ -21,6 +21,9 @@ export const Title = styled.View`
 `;
 
 export const TitleText = styled.Text`
+  max-width: 60%;
+  overflow: hidden;
+  align-items: center;
   font-size: 20px;
   font-weight: bold;
 `;
@@ -54,4 +57,10 @@ export const ItemDescription = styled.Text`
   margin-top: 20px;
   font-size: 14px;
   color: #515151;
+`;
+
+export const Logo = styled.Image`
+  margin-left: 15px;
+  width: 40;
+  height: 70;
 `;

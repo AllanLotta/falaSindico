@@ -19,7 +19,7 @@ export const Header = styled.View`
   align-items: center;
 `;
 
-export const List = styled.View`
+export const List = styled.FlatList`
   /* border: 1px solid yellow; */
 `;
 export const Item = styled.TouchableOpacity`
@@ -35,4 +35,10 @@ export const Item = styled.TouchableOpacity`
 export const TextItem = styled.Text`
   margin-left: 20px;
   color: white;
+`;
+
+export const Logo = styled.Image`
+  width: 50;
+  height: 30;
+  background: black;
 `;

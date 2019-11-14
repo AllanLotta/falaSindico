@@ -14,6 +14,10 @@ export const ScreenName = styled.Text`
   font-weight: bold;
 `;
 
+export const Logo = styled.Image`
+  width: 50;
+  height: 30;
+`;
 // export const Logo = styled.Image.attrs({
 //   source: LogoImage,
 // })`

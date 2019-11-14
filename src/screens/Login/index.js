@@ -20,7 +20,9 @@ import {
   ActionButton,
   ActionText,
   InputText,
+  Logo,
 } from './styles';
+import Logo1 from '../../assets/logo2.png';
 
 export default function Login() {
   const [cod, setCod] = useState('');
@@ -42,7 +44,7 @@ export default function Login() {
       <Container>
         <SafeAreaView>
           <Header>
-            <Text>Logo</Text>
+            <Logo source={Logo1} />
           </Header>
           <Title>
             <TitleText>Cadastro de Morador</TitleText>

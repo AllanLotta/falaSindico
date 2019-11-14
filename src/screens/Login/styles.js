@@ -21,6 +21,11 @@ export const TitleText = styled.Text`
   color: white;
 `;
 
+export const Logo = styled.Image`
+  width: 50;
+  height: 30;
+`;
+
 export const Content = styled.View`
   height: 100%;
   background: #969696;

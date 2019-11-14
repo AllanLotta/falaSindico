@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
+import Ap from '../../assets/predio1.png';
 
 import {
   Container,
@@ -13,6 +14,7 @@ import {
   ItemTitle,
   ItemDate,
   ItemDescription,
+  Logo,
 } from './styles';
 
 export default function Main() {
@@ -24,7 +26,7 @@ export default function Main() {
             <ScrollView>
               <ItemList>
                 <Title>
-                  <Text>Logo</Text>
+                  <Logo source={Ap} />
                   <TitleText>CELEBRIT</TitleText>
                   <Text />
                 </Title>

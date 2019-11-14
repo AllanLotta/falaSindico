@@ -3,7 +3,7 @@ import {Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {MenuContext} from '../../services/MenuContext';
 
-import {Container, ScreenName} from './styles';
+import {Container, ScreenName, Logo} from './styles';
 
 export default function Header() {
   const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
