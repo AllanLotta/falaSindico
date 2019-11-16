@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {
@@ -23,21 +24,31 @@ import {
   Logo,
 } from './styles';
 import Logo1 from '../../assets/logo2.png';
+import api from '../../services/api';
 
 export default function Login() {
-  const [cod, setCod] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [apt, setApt] = useState('');
+  const [codigo, setCod] = useState('cel01');
+  const [nome, setName] = useState('Allan');
+  const [email, setEmail] = useState('allan@gmail.com');
+  const [apartamento, setApt] = useState('07');
 
-  function send() {
+  async function send() {
+    console.log('Open send');
     const data = {
-      cod,
-      name,
+      codigo,
+      nome,
       email,
-      apt,
+      apartamento,
     };
     console.log(data);
+
+    try {
+      const res = await api.post('appValidarPredio', data);
+      AsyncStorage.setItem('fs-data', JSON.stringify(res.data));
+      console.log(res);
+    } catch (error) {
+      return error;
+    }
   }
   return (
     <>

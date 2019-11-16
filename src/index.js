@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,27 +7,61 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import {MenuContext} from './services/MenuContext';
+import {DataContext} from './services/DataContext';
 import Login from './screens/Login';
 import Main from './screens/Main';
 import News from './screens/News';
 import Logout from './screens/Logout';
 
 const App = () => {
+  const [isLoged, setIsLoged] = useState(false);
   const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
     MenuContext
   );
+  const [data, setData] = useContext(DataContext);
+
+  useEffect(() => {
+    async function getStorage() {
+      const res = await AsyncStorage.getItem('fs-data');
+      setData(JSON.parse(res));
+      setIsLoged(!!res);
+    }
+    getStorage();
+    // AsyncStorage.multiRemove(['fs-data']);
+  }, [setIsLoged]);
+
+  function renderScreen() {
+    switch (activeRouter) {
+      case 'Meu Condomínio':
+        return <Main />;
+      case 'Notícias':
+        return <News />;
+      case 'Mudar de Prédio':
+        return <Logout />;
+      default:
+        return <Main />;
+    }
+  }
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Header />
-        <Main />
-      </SafeAreaView>
-      {menu && <Menu />}
-      {/* <Login /> */}
+      {isLoged ? (
+        <>
+          <SafeAreaView>
+            <Header />
+            {renderScreen()}
+          </SafeAreaView>
+          {menu && <Menu />}
+        </>
+      ) : (
+        <SafeAreaView>
+          <Login />
+        </SafeAreaView>
+      )}
     </>
   );
 };

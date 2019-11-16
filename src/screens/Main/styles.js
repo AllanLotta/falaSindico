@@ -3,12 +3,10 @@ import styled from 'styled-components/native';
 export const Container = styled.View``;
 
 export const Content = styled.View`
-  height: 100%;
-  background: #969696;
+  background: #fafafa;
 `;
 export const Card = styled.View`
   background: #fafafa;
-  height: 100%;
 `;
 
 export const Title = styled.View`
@@ -21,21 +19,19 @@ export const Title = styled.View`
 `;
 
 export const TitleText = styled.Text`
-  max-width: 60%;
+  max-width: 70%;
   overflow: hidden;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
 `;
 
 // Item, ItemHeader, ItemTitle, ItemDate, ItemDescription
-export const ItemList = styled.View`
-  margin-bottom: 200px;
+export const ItemList = styled.FlatList`
+  height: 75%;
 `;
 export const Item = styled.View`
   padding: 20px;
-  border-bottom-color: #cecece;
-  border-bottom-width: 1px;
 `;
 
 export const ItemHeader = styled.View`

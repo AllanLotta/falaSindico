@@ -1,5 +1,7 @@
-import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useEffect, useContext} from 'react';
+import {View, Text, ScrollView, SafeAreaView} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import {DataContext} from '../../services/DataContext';
 import Ap from '../../assets/predio1.png';
 
 import {
@@ -18,83 +20,36 @@ import {
 } from './styles';
 
 export default function Main() {
+  const [data, setData] = useContext(DataContext);
+  useEffect(() => {
+    console.log('Data', data);
+  }, [data]);
+
   return (
     <>
       <Container>
         <Content>
           <Card>
-            <ScrollView>
-              <ItemList>
-                <Title>
-                  <Logo source={Ap} />
-                  <TitleText>CELEBRIT</TitleText>
-                  <Text />
-                </Title>
+            {/* <ScrollView> */}
+            <Title>
+              <Logo source={Ap} />
+              <TitleText>{data.nome}</TitleText>
+              <Text />
+            </Title>
+            <ItemList
+              data={data.mensagens}
+              keyExtractor={msg => msg.id}
+              renderItem={({item}) => (
                 <Item>
                   <ItemHeader>
-                    <ItemTitle>Portão 09</ItemTitle>
-                    <ItemDate>27/05/2019</ItemDate>
+                    <ItemTitle>{item.titulo}</ItemTitle>
+                    <ItemDate>{item.data}</ItemDate>
                   </ItemHeader>
-                  <ItemDescription>
-                    Informamos que o portão 09 já está funcionando normalmente!
-                  </ItemDescription>
+                  <ItemDescription>{item.mensagem}</ItemDescription>
                 </Item>
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>Ação</ItemTitle>
-                    <ItemDate>27/04/2019</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>
-                    A coleta seletiva começa em casa! Separe o lixo seco do
-                    úmido em recipientes diferentes.
-                  </ItemDescription>
-                </Item>
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>Concientização</ItemTitle>
-                    <ItemDate>04/02/2019</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>
-                    Não precisa lavar o que vai para o lixo seco (plástico,
-                    vidro, metal e papel), mas precisa retirar restos de
-                    alimentos antes de descartar!
-                  </ItemDescription>
-                </Item>
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>Concientização</ItemTitle>
-                    <ItemDate>04/02/2019</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>
-                    Não precisa lavar o que vai para o lixo seco (plástico,
-                    vidro, metal e papel), mas precisa retirar restos de
-                    alimentos antes de descartar!
-                  </ItemDescription>
-                </Item>
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>Concientização</ItemTitle>
-                    <ItemDate>04/02/2019</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>
-                    Não precisa lavar o que vai para o lixo seco (plástico,
-                    vidro, metal e papel), mas precisa retirar restos de
-                    alimentos antes de descartar!
-                  </ItemDescription>
-                </Item>
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>Outros</ItemTitle>
-                    <ItemDate>04/02/2019</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>
-                    Não precisa lavar o que vai para o lixo seco (plástico,
-                    vidro, metal e papel), mas precisa retirar restos de
-                    alimentos antes de descartar!
-                  </ItemDescription>
-                </Item>
-              </ItemList>
-            </ScrollView>
+              )}
+            />
+            {/* </ScrollView> */}
           </Card>
         </Content>
       </Container>
