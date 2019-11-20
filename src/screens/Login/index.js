@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   TextInput,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {MenuContext} from '../../services/MenuContext';
 
 import {
   Container,
@@ -31,7 +32,14 @@ export default function Login() {
   const [nome, setName] = useState('Allan');
   const [email, setEmail] = useState('allan@gmail.com');
   const [apartamento, setApt] = useState('07');
-
+  const [
+    menu,
+    setMenu,
+    activeRouter,
+    setActiveRouter,
+    isLoged,
+    setIsLoged,
+  ] = useContext(MenuContext);
   async function send() {
     console.log('Open send');
     const data = {
@@ -45,6 +53,8 @@ export default function Login() {
     try {
       const res = await api.post('appValidarPredio', data);
       AsyncStorage.setItem('fs-data', JSON.stringify(res.data));
+      setActiveRouter('Meu Condomínio');
+      setIsLoged(true);
       console.log(res);
     } catch (error) {
       return error;
@@ -65,19 +75,16 @@ export default function Login() {
               <Card>
                 <InputText
                   placeholder="Código do Prédio"
-                  onChangeText={e => setCod(e.target.value)}
+                  onChangeText={e => setCod(e)}
                 />
-                <InputText
-                  placeholder="Nome"
-                  onChangeText={e => setName(e.target.value)}
-                />
+                <InputText placeholder="Nome" onChangeText={e => setName(e)} />
                 <InputText
                   placeholder="Email"
-                  onChangeText={e => setEmail(e.target.value)}
+                  onChangeText={e => setEmail(e)}
                 />
                 <InputText
                   placeholder="Apartamento"
-                  onChangeText={e => setApt(e.target.value)}
+                  onChangeText={e => setApt(e)}
                 />
                 <Action>
                   <ActionButton onPress={() => send()}>

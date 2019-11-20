@@ -16,12 +16,18 @@ import Login from './screens/Login';
 import Main from './screens/Main';
 import News from './screens/News';
 import Logout from './screens/Logout';
+import Club from './screens/Club';
 
 const App = () => {
-  const [isLoged, setIsLoged] = useState(false);
-  const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
-    MenuContext
-  );
+  // const [isLoged, setIsLoged] = useState(false);
+  const [
+    menu,
+    setMenu,
+    activeRouter,
+    setActiveRouter,
+    isLoged,
+    setIsLoged,
+  ] = useContext(MenuContext);
   const [data, setData] = useContext(DataContext);
 
   useEffect(() => {
@@ -40,6 +46,8 @@ const App = () => {
         return <Main />;
       case 'Notícias':
         return <News />;
+      case 'Fala Síndico Clube':
+        return <Club />;
       case 'Mudar de Prédio':
         return <Logout />;
       default:

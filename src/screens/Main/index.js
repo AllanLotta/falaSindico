@@ -31,24 +31,28 @@ export default function Main() {
         <Content>
           <Card>
             {/* <ScrollView> */}
-            <Title>
-              <Logo source={Ap} />
-              <TitleText>{data.nome}</TitleText>
-              <Text />
-            </Title>
-            <ItemList
-              data={data.mensagens}
-              keyExtractor={msg => msg.id}
-              renderItem={({item}) => (
-                <Item>
-                  <ItemHeader>
-                    <ItemTitle>{item.titulo}</ItemTitle>
-                    <ItemDate>{item.data}</ItemDate>
-                  </ItemHeader>
-                  <ItemDescription>{item.mensagem}</ItemDescription>
-                </Item>
-              )}
-            />
+            {data && (
+              <>
+                <Title>
+                  <Logo source={Ap} />
+                  <TitleText>{data.nome}</TitleText>
+                  <Text />
+                </Title>
+                <ItemList
+                  data={data.mensagens}
+                  keyExtractor={msg => msg.id}
+                  renderItem={({item}) => (
+                    <Item>
+                      <ItemHeader>
+                        <ItemTitle>{item.titulo}</ItemTitle>
+                        <ItemDate>{item.data}</ItemDate>
+                      </ItemHeader>
+                      <ItemDescription>{item.mensagem}</ItemDescription>
+                    </Item>
+                  )}
+                />
+              </>
+            )}
             {/* </ScrollView> */}
           </Card>
         </Content>
