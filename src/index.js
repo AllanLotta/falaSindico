@@ -17,6 +17,8 @@ import Main from './screens/Main';
 import News from './screens/News';
 import Logout from './screens/Logout';
 import Club from './screens/Club';
+import Classified from './screens/Classified';
+import Archive from './screens/Archive';
 
 const App = () => {
   // const [isLoged, setIsLoged] = useState(false);
@@ -48,6 +50,10 @@ const App = () => {
         return <News />;
       case 'Fala Síndico Clube':
         return <Club />;
+      case 'Classificados':
+        return <Classified />;
+      case 'Arquivos':
+        return <Archive />;
       case 'Mudar de Prédio':
         return <Logout />;
       default:
@@ -56,7 +62,7 @@ const App = () => {
   }
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       {isLoged ? (
         <>
           <SafeAreaView>

@@ -34,10 +34,7 @@ export default function Search({data, element, result}) {
     <Container>
       <SearchCard>
         <Icon name="ios-search" size={20} color="grey" />
-        <InputSearch
-          placeholder="Procurar Serviço"
-          onChangeText={e => onHandle(e)}
-        />
+        <InputSearch placeholder="Buscar" onChangeText={e => onHandle(e)} />
       </SearchCard>
     </Container>
   );

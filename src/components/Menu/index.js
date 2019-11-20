@@ -11,7 +11,7 @@ const MenuItens = [
   {id: '03', text: 'Fala Síndico Clube', icon: 'ios-briefcase'},
   {id: '04', text: 'Classificados', icon: 'ios-clipboard'},
   {id: '05', text: 'Arquivos', icon: 'ios-folder'},
-  {id: '06', text: 'Enviar mensagem', icon: 'ios-chatbubbles'},
+  // {id: '06', text: 'Enviar mensagem', icon: 'ios-chatbubbles'},
   {id: '07', text: 'Mudar de Prédio', icon: 'ios-log-out'},
 ];
 

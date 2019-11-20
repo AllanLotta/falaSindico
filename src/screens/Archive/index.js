@@ -6,7 +6,7 @@ import Search from '../../components/Search';
 
 import {Container, Item, ItemText, ItemDescription} from './styles';
 
-export default function Classified() {
+export default function Archive() {
   const [searchRes, setSearchRes] = useState();
   const [data, setData] = useContext(DataContext);
   function getRes(res) {
@@ -14,14 +14,14 @@ export default function Classified() {
   }
   return (
     <Container>
-      <Search data={data.classificados} result={e => getRes(e)} />
+      <Search data={data.artigos} result={e => getRes(e)} />
       <Item
-        data={searchRes || data.classificados}
+        data={searchRes || data.artigos}
         keyExtractor={serv => serv.nome}
         renderItem={({item}) => (
           <>
             <ItemText>{item.nome}</ItemText>
-            <ItemDescription>{item.telefone}</ItemDescription>
+            {/* <ItemDescription>{item.telefone}</ItemDescription> */}
           </>
         )}
       />

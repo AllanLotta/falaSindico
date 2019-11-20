@@ -28,10 +28,11 @@ import Logo1 from '../../assets/logo2.png';
 import api from '../../services/api';
 
 export default function Login() {
-  const [codigo, setCod] = useState('cel01');
+  const [codigo, setCod] = useState('cel04');
   const [nome, setName] = useState('Allan');
   const [email, setEmail] = useState('allan@gmail.com');
   const [apartamento, setApt] = useState('07');
+  const [loading, setLoading] = useState(false);
   const [
     menu,
     setMenu,
@@ -41,6 +42,7 @@ export default function Login() {
     setIsLoged,
   ] = useContext(MenuContext);
   async function send() {
+    setLoading(true);
     console.log('Open send');
     const data = {
       codigo,
@@ -54,9 +56,11 @@ export default function Login() {
       const res = await api.post('appValidarPredio', data);
       AsyncStorage.setItem('fs-data', JSON.stringify(res.data));
       setActiveRouter('Meu Condomínio');
+      setLoading(false);
       setIsLoged(true);
       console.log(res);
     } catch (error) {
+      setLoading(false);
       return error;
     }
   }
@@ -88,7 +92,9 @@ export default function Login() {
                 />
                 <Action>
                   <ActionButton onPress={() => send()}>
-                    <ActionText>Efetuar Cadastro</ActionText>
+                    <ActionText>
+                      {loading ? 'Carregando...' : 'Efetuar Cadastro'}
+                    </ActionText>
                   </ActionButton>
                 </Action>
               </Card>
