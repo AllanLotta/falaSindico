@@ -13,16 +13,16 @@ import {
 } from './styles';
 
 export default function Club() {
-  const [text, setText] = useState();
+  const [searchRes, setSearchRes] = useState();
   const [data, setData] = useContext(DataContext);
   function getRes(res) {
-    console.log(res);
+    setSearchRes(res);
   }
   return (
     <Container>
       <Search data={data.servicos} result={e => getRes(e)} />
       <Item
-        data={data.servicos}
+        data={searchRes || data.servicos}
         keyExtractor={serv => serv.nome}
         renderItem={({item}) => (
           <>
