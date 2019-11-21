@@ -10,6 +10,8 @@ import {
   Item,
   ItemText,
   ItemDescription,
+  Modal,
+  ModalCard,
 } from './styles';
 
 export default function Club() {
@@ -19,18 +21,25 @@ export default function Club() {
     setSearchRes(res);
   }
   return (
-    <Container>
-      <Search data={data.servicos} result={e => getRes(e)} />
-      <Item
-        data={searchRes || data.servicos}
-        keyExtractor={serv => serv.nome}
-        renderItem={({item}) => (
-          <>
-            <ItemText>{item.nome}</ItemText>
-            <ItemDescription>{item.telefone}</ItemDescription>
-          </>
-        )}
-      />
-    </Container>
+    <>
+      <Container>
+        <Search data={data.servicos} result={e => getRes(e)} />
+        <Item
+          data={searchRes || data.servicos}
+          keyExtractor={serv => serv.nome}
+          renderItem={({item}) => (
+            <>
+              <ItemText>{item.nome}</ItemText>
+              <ItemDescription>{item.telefone}</ItemDescription>
+            </>
+          )}
+        />
+      </Container>
+      {/* <Modal>
+        <ModalCard>
+          <Text>GG</Text>
+        </ModalCard>
+      </Modal> */}
+    </>
   );
 }

@@ -65,7 +65,7 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       {isLoged ? (
         <>
-          <SafeAreaView>
+          <SafeAreaView style={{backgroundColor: '#fafafa'}}>
             <Header />
             {renderScreen()}
           </SafeAreaView>

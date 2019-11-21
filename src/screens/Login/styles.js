@@ -28,7 +28,7 @@ export const Logo = styled.Image`
 
 export const Content = styled.View`
   height: 100%;
-  background: #969696;
+  background: #fafafa;
   padding: 30px;
 `;
 

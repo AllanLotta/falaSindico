@@ -34,7 +34,7 @@ export default function Main() {
             {data && (
               <>
                 <Title>
-                  <Logo source={Ap} />
+                  <Logo source={{uri: data.imagem}} />
                   <TitleText>{data.nome}</TitleText>
                   <Text />
                 </Title>

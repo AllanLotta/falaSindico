@@ -29,3 +29,21 @@ export const ItemDescription = styled.Text`
   font-size: 14px;
   color: #515151;
 `;
+
+// export const Modal = styled.View`
+//   position: absolute;
+//   flex: 1;
+//   width: 100%;
+//   height: 100%;
+//   background: black;
+//   opacity: 0.6;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+// export const ModalCard = styled.View`
+//   width: 70%;
+//   background: #fafafa;
+//   border-radius: 12px;
+// `;

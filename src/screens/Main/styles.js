@@ -43,6 +43,7 @@ export const ItemHeader = styled.View`
 export const ItemTitle = styled.Text`
   font-size: 18px;
   color: #3a3a3a;
+  max-width: 70%;
 `;
 export const ItemDate = styled.Text`
   font-size: 12px;
