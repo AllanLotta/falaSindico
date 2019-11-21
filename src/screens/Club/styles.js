@@ -17,11 +17,10 @@ export const InputSearch = styled.TextInput`
 `;
 
 export const Item = styled.FlatList`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const ItemText = styled.Text`
-  margin-top: 20px;
   font-size: 16px;
   font-weight: bold;
   max-width: ${`${Dimensions.get('window').width * 0.6}px`};
@@ -29,13 +28,17 @@ export const ItemText = styled.Text`
 
 export const CardItem = styled.View`
   flex-direction: row;
+  padding: 10px;
+  border-bottom-color: #cecece;
+  border-bottom-width: 1px;
 `;
 export const ItemDescription = styled.Text`
   font-size: 14px;
   color: #515151;
+  max-width: ${`${Dimensions.get('window').width * 0.6}px`};
 `;
 export const DetailItemText = styled.Text`
-  margin-top: 20px;
+  /* margin-top: 20px; */
   font-size: 16px;
   font-weight: bold;
 `;
@@ -53,6 +56,7 @@ export const DetailView = styled.View`
   padding: 10px;
 `;
 export const DetailCard = styled.View`
+  padding: 10px;
   background: #fafafa;
   max-width: 50%;
 `;

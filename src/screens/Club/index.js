@@ -97,6 +97,7 @@ export default function Club() {
                     <View style={{marginLeft: 20}}>
                       <ItemText>{item.nome}</ItemText>
                       <ItemDescription>{item.telefone}</ItemDescription>
+                      <ItemDescription>{item.site}</ItemDescription>
                     </View>
                   </CardItem>
                 </TouchableOpacity>
@@ -121,7 +122,7 @@ export default function Club() {
                 <DetailItemDescription>
                   {detailData.telefone}
                 </DetailItemDescription>
-                <ItemDescription>{detailData.email}</ItemDescription>
+                <ItemDescription>{detailData.site}</ItemDescription>
               </DetailCard>
               <DetailCardAction>
                 <BtnCall>
