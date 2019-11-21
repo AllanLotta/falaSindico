@@ -29,6 +29,7 @@ import {
   BtnText,
   DetailItemDescription,
   DetailItemText,
+  CardItem,
 } from './styles';
 
 export default function Club() {
@@ -81,9 +82,23 @@ export default function Club() {
             keyExtractor={serv => serv.nome}
             renderItem={({item}) => (
               <>
-                <TouchableOpacity onPress={() => openDetail(item)}>
-                  <ItemText>{item.nome}</ItemText>
-                  <ItemDescription>{item.telefone}</ItemDescription>
+                <TouchableOpacity
+                  onPress={() => openDetail(item)}
+                  style={{marginBottom: 20}}>
+                  <CardItem>
+                    <Image
+                      source={{
+                        uri: item.imagem,
+                        width: Dimensions.get('window').width * 0.2,
+                        height: Dimensions.get('window').width * 0.2,
+                      }}
+                      resizeMode="contain"
+                    />
+                    <View style={{marginLeft: 20}}>
+                      <ItemText>{item.nome}</ItemText>
+                      <ItemDescription>{item.telefone}</ItemDescription>
+                    </View>
+                  </CardItem>
                 </TouchableOpacity>
               </>
             )}

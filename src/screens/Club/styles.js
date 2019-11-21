@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
   padding: 20px;
@@ -16,15 +17,19 @@ export const InputSearch = styled.TextInput`
 `;
 
 export const Item = styled.FlatList`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 export const ItemText = styled.Text`
   margin-top: 20px;
   font-size: 16px;
   font-weight: bold;
+  max-width: ${`${Dimensions.get('window').width * 0.6}px`};
 `;
 
+export const CardItem = styled.View`
+  flex-direction: row;
+`;
 export const ItemDescription = styled.Text`
   font-size: 14px;
   color: #515151;
@@ -61,7 +66,7 @@ export const DetailCardAction = styled.View`
 export const BtnCall = styled.View`
   align-items: center;
   padding: 12px;
-  background-color: green;
+  background-color: #33cc5e;
   border-radius: 8px;
   min-width: 80px;
   margin-bottom: 10px;
@@ -73,7 +78,7 @@ export const BtnText = styled.Text`
 export const BtnSite = styled.View`
   align-items: center;
   padding: 12px;
-  background-color: green;
+  background-color: #357ff5;
   border-radius: 8px;
   min-width: 80px;
 `;
