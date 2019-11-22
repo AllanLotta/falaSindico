@@ -6,6 +6,7 @@ import {
   View,
   Text,
   StatusBar,
+  ImageBackground,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Header from './components/Header';
@@ -19,6 +20,7 @@ import Logout from './screens/Logout';
 import Club from './screens/Club';
 import Classified from './screens/Classified';
 import Archive from './screens/Archive';
+import BG from './assets/bg.jpg';
 
 const App = () => {
   // const [isLoged, setIsLoged] = useState(false);
@@ -63,19 +65,21 @@ const App = () => {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      {isLoged ? (
-        <>
-          <SafeAreaView style={{backgroundColor: '#fafafa'}}>
-            <Header />
-            {renderScreen()}
+      <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
+        {isLoged ? (
+          <>
+            <SafeAreaView style={{backgroundColor: '#fafafa'}}>
+              <Header />
+              {renderScreen()}
+            </SafeAreaView>
+            {menu && <Menu />}
+          </>
+        ) : (
+          <SafeAreaView>
+            <Login />
           </SafeAreaView>
-          {menu && <Menu />}
-        </>
-      ) : (
-        <SafeAreaView>
-          <Login />
-        </SafeAreaView>
-      )}
+        )}
+      </ImageBackground>
     </>
   );
 };

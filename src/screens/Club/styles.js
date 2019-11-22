@@ -6,9 +6,9 @@ export const Container = styled.View`
   margin-bottom: 200px;
   margin-left: 10px;
   margin-right: 10px;
-  padding: 10px;
   background: #fafafa;
   border-radius: 4px;
+  justify-content: center;
 `;
 
 export const Search = styled.View`

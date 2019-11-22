@@ -1,6 +1,13 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  margin-top: 20px;
+  margin-bottom: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #fafafa;
+  border-radius: 4px;
+`;
 
 export const Content = styled.View`
   background: #fafafa;
@@ -27,9 +34,7 @@ export const TitleText = styled.Text`
 `;
 
 // Item, ItemHeader, ItemTitle, ItemDate, ItemDescription
-export const ItemList = styled.FlatList`
-  height: 75%;
-`;
+export const ItemList = styled.FlatList``;
 export const Item = styled.View`
   padding: 20px;
 `;

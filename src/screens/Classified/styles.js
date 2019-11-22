@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  padding: 20px;
-  padding-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
 `;
 
 export const Item = styled.FlatList`
