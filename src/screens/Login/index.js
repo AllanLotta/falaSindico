@@ -11,6 +11,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {red} from 'ansi-colors';
 import {MenuContext} from '../../services/MenuContext';
 import {DataContext} from '../../services/DataContext';
 import BG from '../../assets/bg.jpg';
@@ -35,6 +36,8 @@ export default function Login() {
   const [codigo, setCod] = useState('');
   const [nome, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
   const [apartamento, setApt] = useState('');
   const [loading, setLoading] = useState(false);
   const [
@@ -47,9 +50,10 @@ export default function Login() {
   ] = useContext(MenuContext);
   const [data, setData] = useContext(DataContext);
   async function send() {
+    setError(true);
     setLoading(true);
     console.log('Open send');
-    const data = {
+    const dataF = {
       codigo,
       nome,
       email,
@@ -58,9 +62,13 @@ export default function Login() {
     console.log(data);
 
     try {
-      const res = await api.post('appValidarPredio', data);
+      const res = await api.post('appValidarPredio', dataF);
       if (res.data === '0') {
+        if (codigo && nome && email && apartamento) {
+          setErrorMsg(true);
+        }
         console.log('Error');
+        setLoading(false);
         return res;
       }
       setData(res.data);
@@ -96,19 +104,56 @@ export default function Login() {
                   <Card>
                     <InputText
                       placeholder="Código do Prédio"
-                      onChangeText={e => setCod(e.toLocaleLowerCase())}
+                      onChangeText={e => {
+                        setCod(e.toLocaleLowerCase());
+                        setErrorMsg(false);
+                      }}
+                      style={
+                        error
+                          ? codigo
+                            ? null
+                            : {borderBottomColor: 'red'}
+                          : null
+                      }
                     />
                     <InputText
                       placeholder="Nome"
-                      onChangeText={e => setName(e)}
+                      onChangeText={e => {
+                        setName(e);
+                      }}
+                      style={
+                        error
+                          ? nome
+                            ? null
+                            : {borderBottomColor: 'red'}
+                          : null
+                      }
                     />
                     <InputText
                       placeholder="Email"
-                      onChangeText={e => setEmail(e)}
+                      onChangeText={e => {
+                        setEmail(e);
+                      }}
+                      style={
+                        error
+                          ? email
+                            ? null
+                            : {borderBottomColor: 'red'}
+                          : null
+                      }
                     />
                     <InputText
                       placeholder="Apartamento"
-                      onChangeText={e => setApt(e)}
+                      onChangeText={e => {
+                        setApt(e);
+                      }}
+                      style={
+                        error
+                          ? apartamento
+                            ? null
+                            : {borderBottomColor: 'red'}
+                          : null
+                      }
                     />
                     <Action>
                       <ActionButton onPress={() => send()}>
@@ -117,6 +162,16 @@ export default function Login() {
                         </ActionText>
                       </ActionButton>
                     </Action>
+                    {errorMsg ? (
+                      <Text
+                        style={{
+                          color: 'red',
+                          textAlign: 'center',
+                          marginBottom: 10,
+                        }}>
+                        Código inválido
+                      </Text>
+                    ) : null}
                   </Card>
                 </ScrollView>
               </Content>

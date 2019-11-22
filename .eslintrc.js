@@ -24,6 +24,7 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/prop-types': 'off',
     'consistent-return': 'off',
+    'no-nested-ternary': 'off',
     // 'react/static-property-placement': 'off',
     // 'react/no-typos': 'off',
     // 'react/jsx-props-no-spreading': 'off',
