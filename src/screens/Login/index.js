@@ -6,12 +6,14 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {MenuContext} from '../../services/MenuContext';
 import {DataContext} from '../../services/DataContext';
+import BG from '../../assets/bg.jpg';
 
 import {
   Container,
@@ -75,51 +77,53 @@ export default function Login() {
   }
   return (
     <>
-      <Container>
-        <SafeAreaView>
-          <KeyboardAwareScrollView
-            scrollEnabled
-            enableAutomaticScroll
-            enableOnAndroid
-            extraScrollHeight={50}>
-            <Header>
-              <Logo source={Logo1} />
-            </Header>
-            <Title>
-              <TitleText>Cadastro de Morador</TitleText>
-            </Title>
-            <Content>
-              <ScrollView>
-                <Card>
-                  <InputText
-                    placeholder="Código do Prédio"
-                    onChangeText={e => setCod(e.toLocaleLowerCase())}
-                  />
-                  <InputText
-                    placeholder="Nome"
-                    onChangeText={e => setName(e)}
-                  />
-                  <InputText
-                    placeholder="Email"
-                    onChangeText={e => setEmail(e)}
-                  />
-                  <InputText
-                    placeholder="Apartamento"
-                    onChangeText={e => setApt(e)}
-                  />
-                  <Action>
-                    <ActionButton onPress={() => send()}>
-                      <ActionText>
-                        {loading ? 'Carregando...' : 'Efetuar Cadastro'}
-                      </ActionText>
-                    </ActionButton>
-                  </Action>
-                </Card>
-              </ScrollView>
-            </Content>
-          </KeyboardAwareScrollView>
-        </SafeAreaView>
-      </Container>
+      <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
+        <Container>
+          <SafeAreaView>
+            <KeyboardAwareScrollView
+              scrollEnabled
+              enableAutomaticScroll
+              enableOnAndroid
+              extraScrollHeight={50}>
+              <Header>
+                <Logo source={Logo1} />
+              </Header>
+              <Title>
+                <TitleText>Cadastro de Morador</TitleText>
+              </Title>
+              <Content>
+                <ScrollView>
+                  <Card>
+                    <InputText
+                      placeholder="Código do Prédio"
+                      onChangeText={e => setCod(e.toLocaleLowerCase())}
+                    />
+                    <InputText
+                      placeholder="Nome"
+                      onChangeText={e => setName(e)}
+                    />
+                    <InputText
+                      placeholder="Email"
+                      onChangeText={e => setEmail(e)}
+                    />
+                    <InputText
+                      placeholder="Apartamento"
+                      onChangeText={e => setApt(e)}
+                    />
+                    <Action>
+                      <ActionButton onPress={() => send()}>
+                        <ActionText>
+                          {loading ? 'Carregando...' : 'Efetuar Cadastro'}
+                        </ActionText>
+                      </ActionButton>
+                    </Action>
+                  </Card>
+                </ScrollView>
+              </Content>
+            </KeyboardAwareScrollView>
+          </SafeAreaView>
+        </Container>
+      </ImageBackground>
     </>
   );
 }

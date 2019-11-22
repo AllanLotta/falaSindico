@@ -28,13 +28,11 @@ export const Logo = styled.Image`
 
 export const Content = styled.View`
   height: 100%;
-  background: #fafafa;
   padding: 30px;
 `;
 
 export const Card = styled.View`
-  border: 2px solid #f1f1f1;
-  border-radius: 8px;
+  border-radius: 4px;
   background: #fafafa;
   padding: 10px;
 `;
@@ -52,7 +50,7 @@ export const Action = styled.View`
 export const ActionButton = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
-  width: 60%;
+  width: 90%;
   background: blue;
   border-radius: 8px;
   padding: 15px;
