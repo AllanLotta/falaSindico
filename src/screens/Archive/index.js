@@ -1,9 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, TextInput, Text, ImageBackground} from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  ImageBackground,
+  FlatList,
+  Image,
+  Dimensions,
+  Linking,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {DataContext} from '../../services/DataContext';
 import Search from '../../components/Search';
 import BG from '../../assets/bg.jpg';
+import PDF from '../../assets/pdf.png';
+import PPT from '../../assets/ppt.png';
+import DOC from '../../assets/doc.png';
+import TXT from '../../assets/txt.png';
+import XLS from '../../assets/xls.png';
 
 import {Container, Item, ItemText, ItemDescription} from './styles';
 
@@ -13,17 +29,64 @@ export default function Archive() {
   function getRes(res) {
     setSearchRes(res);
   }
+
+  function checkType(Type) {
+    switch (Type) {
+      case 'pdf':
+        return PDF;
+      case 'ppt':
+        return PPT;
+      case 'doc':
+        return DOC;
+      case 'txt':
+        return TXT;
+      case 'xls':
+        return XLS;
+      default:
+        return PDF;
+    }
+  }
+
+  function OpenFile(File) {
+    Linking.canOpenURL(File).then(supported => {
+      if (supported) {
+        Linking.openURL(File);
+      } else {
+        Alert.alert('Site is not available');
+      }
+    });
+  }
+
   return (
     <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
       <Container>
-        <Search data={data.artigos} result={e => getRes(e)} />
+        <Search data={data.arquivos} result={e => getRes(e)} />
         <Item
-          data={searchRes || data.artigos}
+          data={searchRes || data.arquivos}
           keyExtractor={serv => serv.nome}
           renderItem={({item}) => (
             <>
-              <ItemText>{item.nome}</ItemText>
-              {/* <ItemDescription>{item.telefone}</ItemDescription> */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View>
+                  <ItemText>{item.nome}</ItemText>
+                  <ItemDescription>{item.data}</ItemDescription>
+                </View>
+                <TouchableOpacity onPress={() => OpenFile(item.link)}>
+                  <Image
+                    source={checkType()}
+                    resizeMode="contain"
+                    style={{
+                      width: Dimensions.get('window').width * 0.1,
+                      height: Dimensions.get('window').width * 0.1,
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
             </>
           )}
         />

@@ -6,7 +6,8 @@ export const Container = styled.View`
 `;
 
 export const Item = styled.FlatList`
-  margin-top: 10px;
+  background: #fafafa;
+  padding: 20px;
 `;
 
 export const ItemText = styled.Text`

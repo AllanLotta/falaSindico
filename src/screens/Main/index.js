@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {DataContext} from '../../services/DataContext';
 import Ap from '../../assets/predio1.png';
 import BG from '../../assets/bg.jpg';
+import api from '../../services/api';
 
 import {
   Container,
@@ -28,9 +29,19 @@ import {
 } from './styles';
 
 export default function Main() {
-  const [data, setData] = useContext(DataContext);
+  const [data, setData, dataForm, setDataForm] = useContext(DataContext);
   useEffect(() => {
-    console.log('Data', data);
+    // async function getData() {
+    //   try {
+    //     const res = await api.post('appValidarPredio', dataForm);
+    //     console.log('RES', res.data);
+    //     setData(res.data);
+    //   } catch (err) {
+    //     return err;
+    //   }
+    // }
+    // getData();
+    console.log(data);
   }, [data]);
 
   return (

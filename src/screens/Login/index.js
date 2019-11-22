@@ -11,7 +11,6 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {red} from 'ansi-colors';
 import {MenuContext} from '../../services/MenuContext';
 import {DataContext} from '../../services/DataContext';
 import BG from '../../assets/bg.jpg';
@@ -48,7 +47,7 @@ export default function Login() {
     isLoged,
     setIsLoged,
   ] = useContext(MenuContext);
-  const [data, setData] = useContext(DataContext);
+  const [data, setData, dataForm, setDataForm] = useContext(DataContext);
   async function send() {
     setError(true);
     setLoading(true);
@@ -68,6 +67,7 @@ export default function Login() {
           setErrorMsg(true);
         }
         console.log('Error');
+        setDataForm(dataF);
         setLoading(false);
         return res;
       }
@@ -78,9 +78,9 @@ export default function Login() {
       setActiveRouter('Meu Condomínio');
       setIsLoged(true);
       console.log(res);
-    } catch (error) {
+    } catch (err) {
       setLoading(false);
-      return error;
+      return err;
     }
   }
   return (
