@@ -2,8 +2,13 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
-  padding: 20px;
-  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  background: #fafafa;
+  border-radius: 4px;
 `;
 
 export const Search = styled.View`
@@ -50,19 +55,26 @@ export const DetailItemDescription = styled.Text`
 
 export const DetailView = styled.View`
   margin-top: 20px;
+  margin-bottom: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #fafafa;
+  border-radius: 4px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 `;
 export const DetailCard = styled.View`
-  padding: 10px;
+  padding: 5px;
   background: #fafafa;
   max-width: 50%;
 `;
 
 export const DetailCardAction = styled.View`
-  padding-left: 5%;
+  padding: 5px;
   justify-content: space-between;
   align-items: center;
 `;
