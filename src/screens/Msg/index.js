@@ -28,14 +28,14 @@ import {
   InputText,
   Logo,
 } from './styles';
-import Logo1 from '../../assets/logo2.png';
 import api from '../../services/api';
 
-export default function Login() {
-  const [codigo, setCodigo] = useState('');
-  const [nome, setName] = useState('');
-  const [email, setEmail] = useState('');
+export default function Msg() {
+  const [titulo, setTitulo] = useState('');
+  const [senha, setSenha] = useState('');
+  const [mensagem, setMensagem] = useState('');
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [apartamento, setApt] = useState('');
   const [loading, setLoading] = useState(false);
@@ -49,39 +49,48 @@ export default function Login() {
   ] = useContext(MenuContext);
   const [data, setData, cod, setCod] = useContext(DataContext);
   async function send() {
+    const msg = {
+      id: data.id,
+      titulo,
+      senha,
+      mensagem,
+    };
+    console.log(msg);
     setError(true);
     setLoading(true);
-    console.log('Open send');
-    const dataF = {
-      codigo,
-      nome,
-      email,
-      apartamento,
-    };
-    console.log(data);
 
     try {
-      const res = await api.post('appValidarPredio', dataF);
-      if (res.data === '0') {
-        if (codigo && nome && email && apartamento) {
+      const res = await api.post('appEnviarMensagemSindico', msg);
+      if (res.data === 0) {
+        if (titulo && senha && mensagem) {
           setErrorMsg(true);
+          setTimeout(() => {
+            setErrorMsg(false);
+          }, 5000);
         }
-        console.log('Error');
         setLoading(false);
         return res;
       }
-      setData(res.data);
-      await AsyncStorage.setItem('fs-cod', JSON.stringify(codigo)); // save cod to get data in others access
-      await AsyncStorage.setItem('fs-data', JSON.stringify(res.data));
+
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 5000);
+
+      // reset values
+      setTitulo('');
+      setSenha('');
+      setMensagem('');
+      setError(false);
 
       setLoading(false);
-      setActiveRouter('Meu Condomínio');
-      setIsLoged(true);
       console.log(res);
     } catch (err) {
       setLoading(false);
       return err;
     }
+
+    // post(baseUrl + "appEnviarMensagemSindico", mensagem) // titulo, senha, mensagem
   }
   return (
     <>
@@ -93,63 +102,48 @@ export default function Login() {
               enableAutomaticScroll
               enableOnAndroid
               extraScrollHeight={50}>
-              <Header>
-                <Logo source={Logo1} />
-              </Header>
-              <Title>
-                <TitleText>Cadastro de Morador</TitleText>
-              </Title>
               <Content>
                 <ScrollView>
                   <Card>
                     <InputText
-                      placeholder="Código do Prédio"
+                      placeholder="Title"
+                      value={titulo}
                       onChangeText={e => {
-                        setCodigo(e.toLocaleLowerCase());
+                        setTitulo(e.toLocaleLowerCase());
                         setErrorMsg(false);
                       }}
                       style={
                         error
-                          ? codigo
+                          ? titulo
                             ? null
                             : {borderBottomColor: 'red'}
                           : null
                       }
                     />
                     <InputText
-                      placeholder="Nome"
+                      placeholder="Senha do painel"
+                      secureTextEntry
+                      value={senha}
                       onChangeText={e => {
-                        setName(e);
+                        setSenha(e);
                       }}
                       style={
                         error
-                          ? nome
+                          ? senha
                             ? null
                             : {borderBottomColor: 'red'}
                           : null
                       }
                     />
                     <InputText
-                      placeholder="Email"
+                      placeholder="Mensagem"
+                      value={mensagem}
                       onChangeText={e => {
-                        setEmail(e);
+                        setMensagem(e);
                       }}
                       style={
                         error
-                          ? email
-                            ? null
-                            : {borderBottomColor: 'red'}
-                          : null
-                      }
-                    />
-                    <InputText
-                      placeholder="Apartamento"
-                      onChangeText={e => {
-                        setApt(e);
-                      }}
-                      style={
-                        error
-                          ? apartamento
+                          ? mensagem
                             ? null
                             : {borderBottomColor: 'red'}
                           : null
@@ -158,7 +152,7 @@ export default function Login() {
                     <Action>
                       <ActionButton onPress={() => send()}>
                         <ActionText>
-                          {loading ? 'Carregando...' : 'Efetuar Cadastro'}
+                          {loading ? 'Carregando...' : 'Enviar Mensagem'}
                         </ActionText>
                       </ActionButton>
                     </Action>
@@ -169,7 +163,17 @@ export default function Login() {
                           textAlign: 'center',
                           marginBottom: 10,
                         }}>
-                        Código inválido
+                        Verifique sua senha e tente novamente
+                      </Text>
+                    ) : null}
+                    {success ? (
+                      <Text
+                        style={{
+                          color: 'green',
+                          textAlign: 'center',
+                          marginBottom: 10,
+                        }}>
+                        Mensagem enviada com sucesso!
                       </Text>
                     ) : null}
                   </Card>

@@ -29,18 +29,23 @@ import {
 } from './styles';
 
 export default function Main() {
-  const [data, setData, dataForm, setDataForm] = useContext(DataContext);
+  const [data, setData, cod, setCod] = useContext(DataContext);
   useEffect(() => {
-    // async function getData() {
-    //   try {
-    //     const res = await api.post('appValidarPredio', dataForm);
-    //     console.log('RES', res.data);
-    //     setData(res.data);
-    //   } catch (err) {
-    //     return err;
-    //   }
-    // }
-    // getData();
+    async function getData() {
+      const codigo = JSON.parse(await AsyncStorage.getItem('fs-cod'));
+      const sendData = {
+        codigo,
+      };
+      try {
+        console.log('cod', sendData);
+        const res = await api.post('appValidarPredio', sendData);
+        console.log('RES', res);
+        setData(res.data);
+      } catch (err) {
+        return err;
+      }
+    }
+    getData();
     console.log(data);
   }, [data]);
 

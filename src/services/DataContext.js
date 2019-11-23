@@ -5,12 +5,12 @@ export const DataContext = createContext();
 export default function DataProvider(props) {
   const {children} = props;
   const [data, setData] = useState();
-  const [dataForm, setDataForm] = useState();
+  const [cod, setCod] = useState();
 
   useEffect(() => {}, []);
 
   return (
-    <DataContext.Provider value={[data, setData, dataForm, setDataForm]}>
+    <DataContext.Provider value={[data, setData, cod, setCod]}>
       {children}
     </DataContext.Provider>
   );

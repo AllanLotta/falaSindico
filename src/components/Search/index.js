@@ -34,7 +34,11 @@ export default function Search({data, element, result}) {
     <Container>
       <SearchCard>
         <Icon name="ios-search" size={20} color="grey" />
-        <InputSearch placeholder="Buscar" onChangeText={e => onHandle(e)} />
+        <InputSearch
+          placeholder="Buscar"
+          style={{width: '100%'}}
+          onChangeText={e => onHandle(e)}
+        />
       </SearchCard>
     </Container>
   );

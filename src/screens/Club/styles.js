@@ -8,7 +8,6 @@ export const Container = styled.View`
   margin-right: 10px;
   background: #fafafa;
   border-radius: 4px;
-  justify-content: center;
 `;
 
 export const Search = styled.View`

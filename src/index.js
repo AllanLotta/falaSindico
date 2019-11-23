@@ -20,6 +20,7 @@ import Logout from './screens/Logout';
 import Club from './screens/Club';
 import Classified from './screens/Classified';
 import Archive from './screens/Archive';
+import Msg from './screens/Msg';
 import BG from './assets/bg.jpg';
 
 const App = () => {
@@ -56,6 +57,8 @@ const App = () => {
         return <Classified />;
       case 'Arquivos':
         return <Archive />;
+      case 'Enviar Mensagem':
+        return <Msg />;
       case 'Mudar de Prédio':
         return <Logout />;
       default:
