@@ -106,7 +106,7 @@ export default function Msg() {
                 <ScrollView>
                   <Card>
                     <InputText
-                      placeholder="Title"
+                      placeholder="Título"
                       value={titulo}
                       onChangeText={e => {
                         setTitulo(e.toLocaleLowerCase());
