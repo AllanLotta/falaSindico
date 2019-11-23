@@ -25,6 +25,7 @@ module.exports = {
     'react/prop-types': 'off',
     'consistent-return': 'off',
     'no-nested-ternary': 'off',
+    'no-underscore-dangle': 'off',
     // 'react/static-property-placement': 'off',
     // 'react/no-typos': 'off',
     // 'react/jsx-props-no-spreading': 'off',
