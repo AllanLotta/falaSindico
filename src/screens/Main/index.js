@@ -47,7 +47,7 @@ export default function Main() {
     }
     getData();
     console.log(data);
-  }, [data]);
+  }, []);
 
   return (
     <>

@@ -46,7 +46,7 @@ export default function Classified() {
     imo.forEach(element => {
       imoI.push(element);
     });
-    outI.forEach(element => {
+    out.forEach(element => {
       outI.push(element);
     });
     const aux = aut.concat(imo);

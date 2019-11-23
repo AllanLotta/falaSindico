@@ -10,6 +10,7 @@ import {
   Linking,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {DataContext} from '../../services/DataContext';
@@ -59,38 +60,40 @@ export default function Archive() {
 
   return (
     <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
-      <Container>
-        <Search data={data.arquivos} result={e => getRes(e)} />
-        <Item
-          data={searchRes || data.arquivos}
-          keyExtractor={serv => serv.nome}
-          renderItem={({item}) => (
-            <>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <View>
-                  <ItemText>{item.nome}</ItemText>
-                  <ItemDescription>{item.data}</ItemDescription>
+      <ScrollView>
+        <Container>
+          <Search data={data.arquivos} result={e => getRes(e)} />
+          <Item
+            data={searchRes || data.arquivos}
+            keyExtractor={serv => serv.nome}
+            renderItem={({item}) => (
+              <>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
+                  <View>
+                    <ItemText>{item.nome}</ItemText>
+                    <ItemDescription>{item.data}</ItemDescription>
+                  </View>
+                  <TouchableOpacity onPress={() => OpenFile(item.link)}>
+                    <Image
+                      source={checkType()}
+                      resizeMode="contain"
+                      style={{
+                        width: Dimensions.get('window').width * 0.1,
+                        height: Dimensions.get('window').width * 0.1,
+                      }}
+                    />
+                  </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={() => OpenFile(item.link)}>
-                  <Image
-                    source={checkType()}
-                    resizeMode="contain"
-                    style={{
-                      width: Dimensions.get('window').width * 0.1,
-                      height: Dimensions.get('window').width * 0.1,
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
-            </>
-          )}
-        />
-      </Container>
+              </>
+            )}
+          />
+        </Container>
+      </ScrollView>
     </ImageBackground>
   );
 }
