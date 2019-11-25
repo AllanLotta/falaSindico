@@ -1,11 +1,12 @@
 import styled, {keyframes, css} from 'styled-components/native';
+import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
-  position: absolute;
   flex: 1;
   background: black;
-  width: 80%;
+  min-width: ${Dimensions.get('window').width * 0.7};
   height: 100%;
+  z-index: 99;
 `;
 export const ScreenName = styled.Text`
   color: #fafafa;

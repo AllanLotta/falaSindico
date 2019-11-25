@@ -18,7 +18,7 @@ export default function Header() {
     }
   }, [activeRouter]);
   function openMenu() {
-    setMenu(true);
+    setMenu(!menu);
   }
   return (
     <Container>
@@ -29,7 +29,7 @@ export default function Header() {
       ) : (
         <Text />
       )}
-      <ScreenName>{activeRouter}</ScreenName>
+      <ScreenName>{!menu ? activeRouter : null}</ScreenName>
       {detail ? (
         <TouchableOpacity onPress={() => setDetail(false)}>
           <Icon name="ios-arrow-back" size={25} color="white" />

@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
+  min-width: ${Dimensions.get('window').width * 0.8};
   padding: 20px;
   margin-bottom: 200px;
   padding-top: 20px;

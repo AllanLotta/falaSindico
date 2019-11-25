@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  min-width: ${Dimensions.get('window').width * 0.8};
+`;
 export const Header = styled.View`
   flex-direction: row;
   justify-content: center;

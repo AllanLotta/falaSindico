@@ -45,9 +45,10 @@ export default function Menu() {
     <Container>
       <SafeAreaView>
         <Header>
-          <TouchableOpacity onPress={() => closeMenu()}>
+          {/* <TouchableOpacity onPress={() => closeMenu()}>
             <Icon name="ios-menu" size={30} color="white" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <Text />
           <Logo source={LogoIcon} />
           <Text />
         </Header>

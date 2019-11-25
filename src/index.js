@@ -7,6 +7,7 @@ import {
   Text,
   StatusBar,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Drawer from 'react-native-drawer';
@@ -39,15 +40,38 @@ const App = () => {
     setIsLoged,
   ] = useContext(MenuContext);
   const [data, setData] = useContext(DataContext);
+
+  function renderScreen() {
+    switch (activeRouter) {
+      case 'Meu Condomínio':
+        return <Main />;
+      case 'Notícias':
+        return <News />;
+      case 'Fala Síndico Clube':
+        return <Club />;
+      case 'Classificados':
+        return <Classified />;
+      case 'Arquivos':
+        return <Archive />;
+      case 'Enviar Mensagem':
+        return <Msg />;
+      case 'Mudar de Prédio':
+        return <Logout />;
+      default:
+        return <Main />;
+    }
+  }
   useEffect(() => {
+    console.log('RELOADING...');
     async function getStorage() {
       const res = await AsyncStorage.getItem('fs-data');
       setData(JSON.parse(res));
       setIsLoged(!!res);
     }
     getStorage();
+    renderScreen();
     // AsyncStorage.multiRemove(['fs-data']);
-  }, [setIsLoged]);
+  }, [setIsLoged, menu]);
 
   function onSwipe(gName) {
     console.log(gName);
@@ -70,27 +94,6 @@ const App = () => {
     directionalOffsetThreshold: 80,
   };
 
-  function renderScreen() {
-    switch (activeRouter) {
-      case 'Meu Condomínio':
-        return <Main />;
-      case 'Notícias':
-        return <News />;
-      case 'Fala Síndico Clube':
-        return <Club />;
-      case 'Classificados':
-        return <Classified />;
-      case 'Arquivos':
-        return <Archive />;
-      case 'Enviar Mensagem':
-        return <Msg />;
-      case 'Mudar de Prédio':
-        return <Logout />;
-      default:
-        return <Main />;
-    }
-  }
-
   return (
     <GestureRecognizer
       onSwipe={e => onSwipe(e)}
@@ -108,10 +111,28 @@ const App = () => {
         {isLoged ? (
           <>
             <SafeAreaView style={{backgroundColor: '#fafafa'}}>
-              <Header />
-              {renderScreen()}
+              <ScrollView horizontal>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                  }}>
+                  {menu && <Menu />}
+                  <View
+                    style={
+                      menu
+                        ? {
+                            width: Dimensions.get('window').width * 0.3,
+                          }
+                        : {
+                            width: Dimensions.get('window').width,
+                          }
+                    }>
+                    <Header />
+                    {renderScreen()}
+                  </View>
+                </View>
+              </ScrollView>
             </SafeAreaView>
-            {menu && <Menu />}
           </>
         ) : (
           <SafeAreaView>
