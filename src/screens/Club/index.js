@@ -76,11 +76,7 @@ export default function Club({navigation}) {
   }
   function goToSite() {
     Linking.canOpenURL(detailData.site).then(supported => {
-      if (supported) {
-        Linking.openURL(detailData.site);
-      } else {
-        Alert.alert('Site is not available');
-      }
+      Linking.openURL(`http://${detailData.site}`);
     });
   }
   return (

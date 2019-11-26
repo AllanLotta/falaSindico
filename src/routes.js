@@ -15,7 +15,7 @@ import Msg from './screens/Msg';
 import CustomMenu from './components/CustomMenu';
 
 function renderICon(iconName) {
-  return <Icon name={iconName} size={28} color="white" />;
+  return <Icon name={iconName} size={30} color="white" />;
 }
 
 const Routes = createAppContainer(
