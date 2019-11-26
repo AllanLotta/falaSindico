@@ -24,11 +24,11 @@ export default function CustomMenu(props) {
             <Text />
           </Header>
           <DrawerItems
-            drawerBackgroundColor="black"
+            drawerBackgroundColor="#232729"
             inactiveTintColor="white"
             iconContainerStyle={{opacity: 1}}
             activeLabelStyle={{color: 'white'}}
-            labelStyle={{fontSize: 17, fontWeight: '400'}}
+            labelStyle={{fontSize: 16, fontWeight: '400'}}
             itemStyle={{borderBottomColor: '#515151', borderBottomWidth: 1}}
             {...props}
           />

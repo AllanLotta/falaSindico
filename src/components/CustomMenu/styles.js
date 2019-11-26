@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
-  background: black;
+  background: #1a1a1a;
   height: ${Dimensions.get('window').height};
 `;
 export const ScreenName = styled.Text`
@@ -13,7 +13,7 @@ export const ScreenName = styled.Text`
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  background: black;
+  background: #1a1a1a;
   padding: 12px;
   align-items: center;
 `;
@@ -21,5 +21,4 @@ export const Header = styled.View`
 export const Logo = styled.Image`
   width: 50;
   height: 30;
-  background: black;
 `;
