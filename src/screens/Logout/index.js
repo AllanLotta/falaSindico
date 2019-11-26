@@ -12,8 +12,9 @@ import {
   ActionBtn,
   ActionText,
 } from './styles';
+import Header from '../../components/Header';
 
-export default function Logout() {
+export default function Logout({navigation}) {
   const [
     menu,
     setMenu,
@@ -29,6 +30,7 @@ export default function Logout() {
   }
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
         <Container>
           <Card>
@@ -49,3 +51,7 @@ export default function Logout() {
     </>
   );
 }
+
+Logout.navigationOptions = {
+  title: 'Sair do prédio',
+};

@@ -12,6 +12,7 @@ import {DataContext} from '../../services/DataContext';
 import Ap from '../../assets/predio1.png';
 import BG from '../../assets/bg.jpg';
 import api from '../../services/api';
+import Header from '../../components/Header';
 
 import {
   Container,
@@ -28,7 +29,10 @@ import {
   Logo,
 } from './styles';
 
-export default function Main() {
+export default function Main({navigation}) {
+  const navigationOptions = {
+    title: 'Home',
+  };
   const [data, setData, cod, setCod] = useContext(DataContext);
   useEffect(() => {
     async function getData() {
@@ -51,6 +55,7 @@ export default function Main() {
 
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
         <ScrollView>
           <Container>
@@ -93,3 +98,7 @@ export default function Main() {
     </>
   );
 }
+
+// Main.navigationOptions = {
+//   title: 'Meu Condomínio',
+// };

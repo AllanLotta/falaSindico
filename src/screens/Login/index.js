@@ -31,7 +31,7 @@ import {
 import Logo1 from '../../assets/logo2.png';
 import api from '../../services/api';
 
-export default function Login() {
+export default function Login({navigation}) {
   const [codigo, setCodigo] = useState('');
   const [nome, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -182,3 +182,7 @@ export default function Login() {
     </>
   );
 }
+
+// Login.navigationOptions = {
+//   headerShown: false,
+// };

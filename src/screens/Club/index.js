@@ -17,6 +17,7 @@ import {DataContext} from '../../services/DataContext';
 import {DetailContext} from '../../services/DetailContext';
 import Search from '../../components/Search';
 import BG from '../../assets/bg.jpg';
+import Header from '../../components/Header';
 
 import {
   Container,
@@ -35,7 +36,7 @@ import {
   CardItem,
 } from './styles';
 
-export default function Club() {
+export default function Club({navigation}) {
   const [searchRes, setSearchRes] = useState();
   const [detailData, setDetailData] = useState();
   const [data, setData] = useContext(DataContext);
@@ -84,10 +85,11 @@ export default function Club() {
   }
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
-        {!detail ? (
-          <ScrollView>
-            <Container>
+        <Container>
+          {!detail ? (
+            <ScrollView>
               <Search data={data.servicos} result={e => getRes(e)} />
               <Item
                 data={searchRes || data.servicos}
@@ -116,49 +118,49 @@ export default function Club() {
                   </>
                 )}
               />
-            </Container>
-          </ScrollView>
-        ) : (
-          <>
-            {detailData ? (
-              <DetailView>
-                <Image
-                  source={{
-                    uri: detailData.imagem,
-                    width: Dimensions.get('window').width * 0.2,
-                    height: Dimensions.get('window').width * 0.2,
-                  }}
-                  resizeMode="contain"
-                />
-                <DetailCard>
-                  <DetailItemText>{detailData.nome}</DetailItemText>
-                  <DetailItemDescription>
-                    {detailData.telefone}
-                  </DetailItemDescription>
-                  <ItemDescription>{detailData.site}</ItemDescription>
-                </DetailCard>
-                <DetailCardAction>
-                  <BtnCall>
-                    <TouchableOpacity onPress={() => callNumber()}>
-                      <BtnText>Ligar</BtnText>
-                    </TouchableOpacity>
-                  </BtnCall>
-                  {detailData.site ? (
-                    <BtnSite>
-                      <TouchableOpacity onPress={() => goToSite()}>
-                        <BtnText>Site</BtnText>
+            </ScrollView>
+          ) : (
+            <>
+              {detailData ? (
+                <DetailView>
+                  <Image
+                    source={{
+                      uri: detailData.imagem,
+                      width: Dimensions.get('window').width * 0.2,
+                      height: Dimensions.get('window').width * 0.2,
+                    }}
+                    resizeMode="contain"
+                  />
+                  <DetailCard>
+                    <DetailItemText>{detailData.nome}</DetailItemText>
+                    <DetailItemDescription>
+                      {detailData.telefone}
+                    </DetailItemDescription>
+                    <ItemDescription>{detailData.site}</ItemDescription>
+                  </DetailCard>
+                  <DetailCardAction>
+                    <BtnCall>
+                      <TouchableOpacity onPress={() => callNumber()}>
+                        <BtnText>Ligar</BtnText>
                       </TouchableOpacity>
-                    </BtnSite>
-                  ) : (
-                    <Text />
-                  )}
-                </DetailCardAction>
-              </DetailView>
-            ) : (
-              setDetail(false)
-            )}
-          </>
-        )}
+                    </BtnCall>
+                    {detailData.site ? (
+                      <BtnSite>
+                        <TouchableOpacity onPress={() => goToSite()}>
+                          <BtnText>Site</BtnText>
+                        </TouchableOpacity>
+                      </BtnSite>
+                    ) : (
+                      <Text />
+                    )}
+                  </DetailCardAction>
+                </DetailView>
+              ) : (
+                setDetail(false)
+              )}
+            </>
+          )}
+        </Container>
       </ImageBackground>
     </>
   );

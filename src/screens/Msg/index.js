@@ -14,10 +14,10 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {MenuContext} from '../../services/MenuContext';
 import {DataContext} from '../../services/DataContext';
 import BG from '../../assets/bg.jpg';
+import Header from '../../components/Header';
 
 import {
   Container,
-  Header,
   Title,
   TitleText,
   Content,
@@ -30,7 +30,7 @@ import {
 } from './styles';
 import api from '../../services/api';
 
-export default function Msg() {
+export default function Msg({navigation}) {
   const [titulo, setTitulo] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
@@ -94,6 +94,7 @@ export default function Msg() {
   }
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
         <Container>
           <SafeAreaView>

@@ -10,13 +10,15 @@ import {
 } from 'react-native';
 import {DataContext} from '../../services/DataContext';
 import BG from '../../assets/bg.jpg';
+import Header from '../../components/Header';
 
 import {Container, List} from './styles';
 
-export default function News() {
+export default function News({navigation}) {
   const [data, setData] = useContext(DataContext);
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
         <ScrollView>
           <Container>

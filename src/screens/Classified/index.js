@@ -6,8 +6,9 @@ import Search from '../../components/Search';
 import BG from '../../assets/bg.jpg';
 
 import {Container, Item, ItemText, ItemDescription, Category} from './styles';
+import Header from '../../components/Header';
 
-export default function Classified() {
+export default function Classified({navigation}) {
   const [searchRes, setSearchRes] = useState([]);
   const [classf, setClassf] = useState([]);
   const [automoveis, setAutomoveis] = useState([]);
@@ -83,6 +84,7 @@ export default function Classified() {
   }, [data]);
   return (
     <>
+      <Header navigation={navigation} />
       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
         <ScrollView>
           <Container>

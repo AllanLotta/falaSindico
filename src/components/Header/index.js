@@ -6,7 +6,7 @@ import {DetailContext} from '../../services/DetailContext';
 
 import {Container, ScreenName, Logo} from './styles';
 
-export default function Header() {
+export default function Header({navigation}) {
   const [menu, setMenu, activeRouter, setActiveRouter] = useContext(
     MenuContext
   );
@@ -23,13 +23,16 @@ export default function Header() {
   return (
     <Container>
       {!detail ? (
-        <TouchableOpacity onPress={() => openMenu()}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Icon name="ios-menu" size={25} color="white" />
         </TouchableOpacity>
       ) : (
         <Text />
       )}
-      <ScreenName>{!menu ? activeRouter : null}</ScreenName>
+      <ScreenName>
+        {/* {!menu ? activeRouter : null} */}
+        {navigation.state.params.screenName}
+      </ScreenName>
       {detail ? (
         <TouchableOpacity onPress={() => setDetail(false)}>
           <Icon name="ios-arrow-back" size={25} color="white" />

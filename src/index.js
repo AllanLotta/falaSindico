@@ -9,6 +9,8 @@ import {
   ImageBackground,
   Dimensions,
 } from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import AsyncStorage from '@react-native-community/async-storage';
 import Drawer from 'react-native-drawer';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
@@ -25,6 +27,7 @@ import Classified from './screens/Classified';
 import Archive from './screens/Archive';
 import Msg from './screens/Msg';
 import BG from './assets/bg.jpg';
+import Routes, {StackHeader} from './routes';
 
 const App = () => {
   const [myText, setMyText] = useState("I'm ready to get swiped!");
@@ -94,55 +97,80 @@ const App = () => {
     directionalOffsetThreshold: 80,
   };
 
-  return (
-    <GestureRecognizer
-      onSwipe={e => onSwipe(e)}
-      // onSwipeUp={() => onSwipeUp()}
-      // onSwipeDown={() => onSwipeDown()}
-      // onSwipeLeft={() => onSwipeLeft()}
-      // onSwipeRight={() => onSwipeRight()}
-      config={config}
-      style={{
-        flex: 1,
-        backgroundColor,
-      }}>
-      <StatusBar barStyle="light-content" />
-      <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
-        {isLoged ? (
-          <>
-            <SafeAreaView style={{backgroundColor: '#fafafa'}}>
-              <ScrollView horizontal>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                  }}>
-                  {menu && <Menu />}
-                  <View
-                    style={
-                      menu
-                        ? {
-                            width: Dimensions.get('window').width * 0.3,
-                          }
-                        : {
-                            width: Dimensions.get('window').width,
-                          }
-                    }>
-                    <Header />
-                    {renderScreen()}
-                  </View>
-                </View>
-              </ScrollView>
-            </SafeAreaView>
-          </>
-        ) : (
-          <SafeAreaView>
-            <Login />
-          </SafeAreaView>
-        )}
-      </ImageBackground>
-    </GestureRecognizer>
-  );
+  return <>{!isLoged ? <Login /> : <Routes />}</>;
 };
+// const AppNavigator = createStackNavigator(
+//   {
+//     Main,
+//     News,
+//     Club,
+//     Classified,
+//     Archive,
+//     Msg,
+//     Logout,
+//     Login,
+//   },
+//   {
+//     initialRouteName: 'Main',
+//     defaultNavigationOptions: {
+//       headerStyle: {
+//         backgroundColor: '#1480d7',
+//       },
+//       headerTintColor: '#fff',
+//       headerTitleStyle: {
+//         fontWeight: 'bold',
+//       },
+//     },
+//   }
+// );
+//     <GestureRecognizer
+//       onSwipe={e => onSwipe(e)}
+//       // onSwipeUp={() => onSwipeUp()}
+//       // onSwipeDown={() => onSwipeDown()}
+//       // onSwipeLeft={() => onSwipeLeft()}
+//       // onSwipeRight={() => onSwipeRight()}
+//       config={config}
+//       style={{
+//         flex: 1,
+//         backgroundColor,
+//       }}>
+//       <StatusBar barStyle="light-content" />
+//       <ImageBackground source={BG} style={{width: '100%', height: '100%'}}>
+//         {isLoged ? (
+//           <>
+//             <SafeAreaView style={{backgroundColor: '#fafafa'}}>
+//               <ScrollView horizontal>
+//                 <View
+//                   style={{
+//                     flexDirection: 'row',
+//                   }}>
+//                   {menu && <Menu />}
+//                   <View
+//                     style={
+//                       menu
+//                         ? {
+//                             width: Dimensions.get('window').width * 0.3,
+//                           }
+//                         : {
+//                             width: Dimensions.get('window').width,
+//                           }
+//                     }>
+//                     <Header />
+//                     {renderScreen()}
+//                   </View>
+//                 </View>
+//               </ScrollView>
+//             </SafeAreaView>
+//           </>
+//         ) : (
+//           <SafeAreaView>
+//             <Login />
+//           </SafeAreaView>
+//         )}
+//       </ImageBackground>
+//     </GestureRecognizer>
+//   );
+// };
 
 //  const App = () => {
 //    // const [isLoged, setIsLoged] = useState(false);

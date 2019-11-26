@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
+  background: #fafafa !important;
   min-width: ${Dimensions.get('window').width * 0.8};
   margin-top: 20px;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
   margin-left: 10px;
   margin-right: 10px;
-  background: #fafafa;
   border-radius: 4px;
 `;
 
@@ -56,7 +56,7 @@ export const DetailItemDescription = styled.Text`
 export const DetailView = styled.View`
   min-width: ${Dimensions.get('window').width * 0.8};
   margin-top: 20px;
-  margin-bottom: 200px;
+  margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
   background: #fafafa;
