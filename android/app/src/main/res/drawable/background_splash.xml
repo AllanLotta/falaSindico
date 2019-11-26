@@ -3,8 +3,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
   <item android:drawable="@color/primary" />
   <item
-    android:width="100dp"
-    android:height="53dp"
+    android:width="200dp"
+    android:height="106dp"
     android:drawable="@drawable/logo2"
     android:gravity="center"
    />

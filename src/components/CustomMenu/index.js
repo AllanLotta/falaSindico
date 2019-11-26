@@ -28,6 +28,7 @@ export default function CustomMenu(props) {
             inactiveTintColor="white"
             iconContainerStyle={{opacity: 1}}
             activeLabelStyle={{color: 'white'}}
+            labelStyle={{fontSize: 17, fontWeight: '400'}}
             itemStyle={{borderBottomColor: '#515151', borderBottomWidth: 1}}
             {...props}
           />
