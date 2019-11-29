@@ -32,12 +32,12 @@ import Logo1 from '../../assets/logo2.png';
 import api from '../../services/api';
 
 export default function Login({navigation}) {
-  const [codigo, setCodigo] = useState('');
-  const [nome, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [codigo, setCodigo] = useState('FS-teste');
+  const [nome, setName] = useState('allan');
+  const [email, setEmail] = useState('allan@gmail.com');
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
-  const [apartamento, setApt] = useState('');
+  const [apartamento, setApt] = useState('11');
   const [loading, setLoading] = useState(false);
   const [
     menu,
@@ -48,6 +48,35 @@ export default function Login({navigation}) {
     setIsLoged,
   ] = useContext(MenuContext);
   const [data, setData, cod, setCod] = useContext(DataContext);
+
+  function isSindico(codUser) {
+    console.log('Inside check ===');
+    console.log('cod', codUser);
+
+    const x = codUser.charAt(0);
+    const y = codUser.charAt(1);
+    console.log('x', x);
+    console.log('y', y);
+
+    if (x == 'f' && y == 's') {
+      console.log('Resultado do check', true);
+      return true;
+    }
+    if (x == 'F' && y == 'S') {
+      console.log('Resultado do check', true);
+      return true;
+    }
+    if (x == 'f' && y == 'S') {
+      console.log('Resultado do check', true);
+      return true;
+    }
+    if (x == 'F' && y == 's') {
+      console.log('Resultado do check', true);
+      return true;
+    }
+    console.log('Resultado do check', false);
+    return false;
+  }
   async function send() {
     setError(true);
     setLoading(true);
@@ -58,7 +87,7 @@ export default function Login({navigation}) {
       email,
       apartamento,
     };
-    console.log(data);
+    console.log(dataF);
 
     try {
       const res = await api.post('appValidarPredio', dataF);
@@ -71,6 +100,12 @@ export default function Login({navigation}) {
         return res;
       }
       setData(res.data);
+      const checkIsSindico = isSindico(codigo);
+      if (checkIsSindico) {
+        await AsyncStorage.setItem('fs-isSindico', 'sindico');
+      } else {
+        // await AsyncStorage.setItem('fs-isSindico', false);
+      }
       await AsyncStorage.setItem('fs-cod', JSON.stringify(codigo)); // save cod to get data in others access
       await AsyncStorage.setItem('fs-data', JSON.stringify(res.data));
 

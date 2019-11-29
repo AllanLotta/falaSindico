@@ -26,6 +26,7 @@ export default function Logout({navigation}) {
   function logout() {
     console.log('Saindo!');
     AsyncStorage.setItem('fs-data', '');
+    AsyncStorage.setItem('fs-isSindico', '');
     setIsLoged(false);
   }
   return (

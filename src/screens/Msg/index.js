@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
   View,
   TextInput,
@@ -37,7 +37,7 @@ export default function Msg({navigation}) {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
-  const [apartamento, setApt] = useState('');
+  const [isSindico, setIsSindico] = useState(false);
   const [loading, setLoading] = useState(false);
   const [
     menu,
@@ -48,6 +48,21 @@ export default function Msg({navigation}) {
     setIsLoged,
   ] = useContext(MenuContext);
   const [data, setData, cod, setCod] = useContext(DataContext);
+
+  useEffect(() => {
+    async function getLocal() {
+      const res = await AsyncStorage.getItem('fs-isSindico');
+      console.log('============', res);
+      if (res.length > 3) {
+        console.log('È sindico');
+        setIsSindico(true);
+      } else {
+        setIsSindico(false);
+      }
+    }
+    getLocal();
+  });
+
   async function send() {
     const msg = {
       id: data.id,
@@ -105,79 +120,89 @@ export default function Msg({navigation}) {
               extraScrollHeight={50}>
               <Content>
                 <ScrollView>
-                  <Card>
-                    <InputText
-                      placeholder="Título"
-                      value={titulo}
-                      onChangeText={e => {
-                        setTitulo(e.toLocaleLowerCase());
-                        setErrorMsg(false);
-                      }}
-                      style={
-                        error
-                          ? titulo
-                            ? null
-                            : {borderBottomColor: 'red'}
-                          : null
-                      }
-                    />
-                    <InputText
-                      placeholder="Senha do painel"
-                      secureTextEntry
-                      value={senha}
-                      onChangeText={e => {
-                        setSenha(e);
-                      }}
-                      style={
-                        error
-                          ? senha
-                            ? null
-                            : {borderBottomColor: 'red'}
-                          : null
-                      }
-                    />
-                    <InputText
-                      placeholder="Mensagem"
-                      value={mensagem}
-                      onChangeText={e => {
-                        setMensagem(e);
-                      }}
-                      style={
-                        error
-                          ? mensagem
-                            ? null
-                            : {borderBottomColor: 'red'}
-                          : null
-                      }
-                    />
-                    <Action>
-                      <ActionButton onPress={() => send()}>
-                        <ActionText>
-                          {loading ? 'Carregando...' : 'Enviar Mensagem'}
-                        </ActionText>
-                      </ActionButton>
-                    </Action>
-                    {errorMsg ? (
-                      <Text
-                        style={{
-                          color: 'red',
-                          textAlign: 'center',
-                          marginBottom: 10,
-                        }}>
-                        Verifique sua senha e tente novamente
+                  {isSindico ? (
+                    <Card>
+                      <InputText
+                        placeholder="Título"
+                        value={titulo}
+                        maxLength={50}
+                        onChangeText={e => {
+                          setTitulo(e);
+                          setErrorMsg(false);
+                        }}
+                        style={
+                          error
+                            ? titulo
+                              ? null
+                              : {borderBottomColor: 'red'}
+                            : null
+                        }
+                      />
+                      <InputText
+                        placeholder="Senha do painel"
+                        secureTextEntry
+                        value={senha}
+                        onChangeText={e => {
+                          setSenha(e);
+                        }}
+                        style={
+                          error
+                            ? senha
+                              ? null
+                              : {borderBottomColor: 'red'}
+                            : null
+                        }
+                      />
+                      <InputText
+                        placeholder="Mensagem"
+                        value={mensagem}
+                        maxLength={120}
+                        onChangeText={e => {
+                          setMensagem(e);
+                        }}
+                        style={
+                          error
+                            ? mensagem
+                              ? null
+                              : {borderBottomColor: 'red'}
+                            : null
+                        }
+                      />
+                      <Action>
+                        <ActionButton onPress={() => send()}>
+                          <ActionText>
+                            {loading ? 'Carregando...' : 'Enviar Mensagem'}
+                          </ActionText>
+                        </ActionButton>
+                      </Action>
+                      {errorMsg ? (
+                        <Text
+                          style={{
+                            color: 'red',
+                            textAlign: 'center',
+                            marginBottom: 10,
+                          }}>
+                          Verifique sua senha e tente novamente
+                        </Text>
+                      ) : null}
+                      {success ? (
+                        <Text
+                          style={{
+                            color: 'green',
+                            textAlign: 'center',
+                            marginBottom: 10,
+                          }}>
+                          Mensagem enviada com sucesso!
+                        </Text>
+                      ) : null}
+                    </Card>
+                  ) : (
+                    <Card>
+                      <Text style={{textAlign: 'center', color: 'red'}}>
+                        Apenas síndicos podem enviar mensagens
                       </Text>
-                    ) : null}
-                    {success ? (
-                      <Text
-                        style={{
-                          color: 'green',
-                          textAlign: 'center',
-                          marginBottom: 10,
-                        }}>
-                        Mensagem enviada com sucesso!
-                      </Text>
-                    ) : null}
-                  </Card>
+                    </Card>
+                  )}
                 </ScrollView>
               </Content>
             </KeyboardAwareScrollView>

@@ -65,6 +65,7 @@ const App = () => {
     }
   }
   useEffect(() => {
+    // AsyncStorage.clear();
     console.log('RELOADING...');
     async function getStorage() {
       const res = await AsyncStorage.getItem('fs-data');
